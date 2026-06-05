@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Navbar from "@/public/components/navbar/page";
 
 const toppers = [
   { rank: 1, name: "Aarush Singhal", state: "Chandigarh", percentile: 100 },
@@ -157,29 +158,7 @@ export default function HomePage() {
         .stagger-4 { transition-delay: 0.4s; }
       `}</style>
 
-      {/* ── NAVBAR ── */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-          <a href="#" className="flex items-center gap-1.5 no-underline">
-            <span className="font-display font-extrabold text-2xl text-slate-900">
-              Exam<span className="text-blue-600">Plus</span>
-            </span>
-            <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
-          </a>
-          <ul className="hidden md:flex gap-8 list-none m-0 p-0">
-            {["Home", "Quizzes", "Papers", "Leaderboard", "Login"].map((item) => (
-              <li key={item}>
-                <a href="#" className="text-slate-500 text-sm font-medium no-underline hover:text-slate-900 transition-colors">
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <button className="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-blue-600 transition-colors font-display">
-            Get Started Free
-          </button>
-        </div>
-      </nav>
+     
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-white pt-20 pb-0 text-center px-6">
@@ -578,38 +557,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="bg-slate-950 px-6 pt-14 pb-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-            <div className="col-span-2">
-              <div className="flex items-center gap-1.5 mb-3">
-                <span className="font-display font-extrabold text-xl text-white">Exam<span className="text-blue-400">Plus</span></span>
-                <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
-              </div>
-              <p className="text-slate-500 text-sm leading-relaxed max-w-xs">India&apos;s most trusted platform for competitive exam preparation. Practice smarter, rank higher.</p>
-            </div>
-            {[
-              { title: "Exams", links: ["JEE Main", "JEE Advanced", "NEET", "GATE", "SSC", "UPSC"] },
-              { title: "Practice", links: ["Mock Tests", "Previous Papers", "Topic Quizzes", "Leaderboard"] },
-              { title: "Company", links: ["About", "Blog", "Careers", "Contact"] },
-            ].map((col) => (
-              <div key={col.title}>
-                <div className="font-display font-bold text-white text-sm mb-3">{col.title}</div>
-                <ul className="space-y-2 list-none p-0 m-0">
-                  {col.links.map((link) => (
-                    <li key={link}><a href="#" className="text-slate-500 text-sm no-underline hover:text-white transition-colors">{link}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="text-slate-600 text-xs">© 2026 ExamPlus. All rights reserved.</p>
-            <p className="font-display text-slate-600 text-xs">Practice. Compete. Succeed.</p>
-          </div>
-        </div>
-      </footer>
+     
     </div>
   );
 }

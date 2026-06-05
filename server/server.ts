@@ -2,6 +2,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser';
 import quizRoute from './routes/quizRoute.js';
 import mongodbServer from './config/db.js';
+import submitRoute from './routes/submissionRoute.js'
 import cors from 'cors'
 const port = 8000;
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors({
 mongodbServer()
 // API routes
 app.use('/api/quiz', quizRoute);
+app.use('/api/mock', submitRoute)
 
 app.get('/', (req, res)=>{
     res.send("Hey man!")

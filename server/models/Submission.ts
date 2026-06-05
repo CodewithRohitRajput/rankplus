@@ -6,7 +6,7 @@ const submissionSchema = new mongoose.Schema({
         ref: "User"
     },
 
-    quizId: {
+    mockId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Quiz"
     },
