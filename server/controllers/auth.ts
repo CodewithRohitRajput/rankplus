@@ -3,7 +3,7 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-const router = express.Router();
+import type { Request, Response } from 'express';
 
 dotenv.config()
 
@@ -12,7 +12,7 @@ if(!SECRET){
     throw new Error("Secret key is missing from the env file.")
 }
 
-router.post('/signup', async(req,res)=>{
+export  async function signup (req : Request,res: Response){
     const {username, email, password} = req.body;
     const isNew = await User.findOne({email});
     if(isNew) return res.status(400).json({message : "User already exists"})
@@ -20,7 +20,7 @@ router.post('/signup', async(req,res)=>{
     const newUser = await User.create({username,email,password:hashPass})
     const token = jwt.sign(
         {id : newUser._id,},
-        SECRET
+        SECRET as string
        )
 
        res.cookie("token", token,{
@@ -29,10 +29,10 @@ router.post('/signup', async(req,res)=>{
     
        res.status(201).json({message: "Signup Successful."})
 
-})
+}
 
 
-router.post('/login', async(req,res)=>{
+export async function login (req: Request, res: Response){
     const {email,password} = req.body;
     const isUser = await User.findOne({email})
     if(!isUser) return res.status(404).json({message : " User not found" })
@@ -42,12 +42,12 @@ router.post('/login', async(req,res)=>{
     const passCheck = await bcrypt.compare(password, isUser.password)
     if(!passCheck) return res.status(400).json({message : "Password is incorrect"})
     
-        const token = jwt.sign({id : isUser._id}, SECRET)
+        const token = jwt.sign({id : isUser._id}, SECRET as string)
         res.cookie("token",token,{
             httpOnly: true
         })
         res.status(200).json({message : "LoggedIn Successful"})
-})
+}
 
 
 
@@ -57,4 +57,7 @@ router.post('/login', async(req,res)=>{
 
 
 
-export default router;
+export default {
+    login,
+    signup
+}

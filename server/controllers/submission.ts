@@ -5,7 +5,7 @@ import  jwt  from "jsonwebtoken";
 
 export async function submitMock(req: Request, res: Response){
     const {mockId, answers} = req.body;
-    const mock = await Quiz.findById({id: mockId})
+    const mock = await Quiz.findById({_id: mockId})
     if(!mock){
         return res.status(404).json({message : "Mock not found"})
     }
@@ -17,6 +17,7 @@ export async function submitMock(req: Request, res: Response){
     })
 
     const token = req.cookies.token
+    if(!token) return res.status(404).json({message :"pls login first"})
     const decoded = jwt.verify(token, process.env.SECRET as string) as {id : string}
     const userId = (decoded.id as string)
     const submitMock = await Submission.create({
