@@ -67,7 +67,7 @@ export default function Exams(){
                 
                 <Link key={idx} 
                 href={`exams/${m._id}`}
-                >
+                 >
                     {m.title}
 
                 
