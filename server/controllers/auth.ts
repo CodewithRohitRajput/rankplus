@@ -46,7 +46,7 @@ export async function login (req: Request, res: Response){
         res.cookie("token",token,{
             httpOnly: true
         })
-        res.status(200).json({message : "LoggedIn Successful"})
+        res.status(200).json({token})
 }
 
 
