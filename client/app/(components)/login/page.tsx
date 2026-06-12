@@ -39,8 +39,7 @@ export default function Login() {
             }
 
             setMessage("Login Successful")
-
-            console.log(data)
+            window.location.href='/exams'            
 
         } catch (error) {
 
